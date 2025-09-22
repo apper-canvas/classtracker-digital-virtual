@@ -175,4 +175,3 @@ class AssignmentService {
 }
 
 export default new AssignmentService();
-export default new AssignmentService();

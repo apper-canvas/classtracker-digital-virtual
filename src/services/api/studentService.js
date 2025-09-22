@@ -228,5 +228,3 @@ class StudentService {
 }
 
 export default new StudentService();
-
-export default new StudentService();
