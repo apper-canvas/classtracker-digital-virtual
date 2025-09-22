@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { Route, Router, Routes, useNavigate } from "react-router-dom";
+import { Route, BrowserRouter, Routes, useNavigate } from "react-router-dom";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { store } from "@/store/store";
 import { clearUser, setUser } from "@/store/userSlice";
@@ -160,9 +160,9 @@ function AppContent() {
 function App() {
   return (
     <Provider store={store}>
-      <Router>
+<BrowserRouter>
         <AppContent />
-      </Router>
+      </BrowserRouter>
     </Provider>
   );
 }
