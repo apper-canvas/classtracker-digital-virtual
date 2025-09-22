@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useState } from "react";
+import React, { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import { motion } from "framer-motion";
 import ApperIcon from "@/components/ApperIcon";
 import Error from "@/components/ui/Error";
@@ -9,7 +9,7 @@ import studentService from "@/services/api/studentService";
 import attendanceService from "@/services/api/attendanceService";
 import assignmentService from "@/services/api/assignmentService";
 
-const DashboardStats = () => {
+const DashboardStats = forwardRef((props, ref) => {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -60,7 +60,11 @@ const recentGrades = grades
     } finally {
       setLoading(false);
     }
-  };
+};
+
+  useImperativeHandle(ref, () => ({
+    refreshStats: loadStats
+  }));
 
   useEffect(() => {
     loadStats();
@@ -173,10 +177,8 @@ const recentGrades = grades
           )}
         </div>
       </Card>
-    </div>
+</div>
   );
-};
+});
 
-export default React.forwardRef((props, ref) => (
-  <DashboardStats {...props} ref={ref} />
-));
+export default DashboardStats;
