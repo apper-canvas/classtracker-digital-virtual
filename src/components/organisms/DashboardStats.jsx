@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import Card from "@/components/atoms/Card";
-import Loading from "@/components/ui/Loading";
-import Error from "@/components/ui/Error";
 import ApperIcon from "@/components/ApperIcon";
-import studentService from "@/services/api/studentService";
-import assignmentService from "@/services/api/assignmentService";
+import Error from "@/components/ui/Error";
+import Loading from "@/components/ui/Loading";
+import Card from "@/components/atoms/Card";
 import gradeService from "@/services/api/gradeService";
+import studentService from "@/services/api/studentService";
 import attendanceService from "@/services/api/attendanceService";
+import assignmentService from "@/services/api/assignmentService";
 
 const DashboardStats = () => {
   const [stats, setStats] = useState(null);
@@ -177,4 +177,6 @@ const recentGrades = grades
   );
 };
 
-export default DashboardStats;
+export default React.forwardRef((props, ref) => (
+  <DashboardStats {...props} ref={ref} />
+));
