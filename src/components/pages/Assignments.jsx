@@ -81,11 +81,11 @@ const Assignments = () => {
   const handleShowForm = (assignment = null) => {
     if (assignment) {
       setFormData({
-        title: assignment.title,
-        description: assignment.description,
-        category: assignment.category,
-        totalPoints: assignment.totalPoints.toString(),
-        dueDate: assignment.dueDate
+title: assignment.title_c,
+        description: assignment.description_c,
+        category: assignment.category_c,
+        totalPoints: assignment.total_points_c.toString(),
+        dueDate: assignment.due_date_c
       });
       setEditingAssignment(assignment);
     } else {
@@ -203,7 +203,7 @@ const Assignments = () => {
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredAssignments.map((assignment, index) => (
             <motion.div
-              key={assignment.Id}
+key={assignment.Id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
@@ -211,14 +211,14 @@ const Assignments = () => {
               <Card variant="interactive" className="p-6 h-full flex flex-col">
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
-                    <Badge variant={getCategoryColor(assignment.category)} className="mb-2">
-                      {assignment.category}
+                    <Badge variant={getCategoryColor(assignment.category_c)} className="mb-2">
+                      {assignment.category_c}
                     </Badge>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      {assignment.title}
+                      {assignment.title_c}
                     </h3>
                     <p className="text-sm text-gray-600 line-clamp-3">
-                      {assignment.description}
+                      {assignment.description_c}
                     </p>
                   </div>
                   <div className="flex items-center space-x-1 ml-4">
@@ -245,12 +245,12 @@ const Assignments = () => {
                     <div className="flex items-center space-x-4">
                       <div>
                         <p className="text-gray-600">Points</p>
-                        <p className="font-semibold text-gray-900">{assignment.totalPoints}</p>
+                        <p className="font-semibold text-gray-900">{assignment.total_points_c}</p>
                       </div>
                       <div>
                         <p className="text-gray-600">Due Date</p>
                         <p className="font-semibold text-gray-900">
-                          {format(new Date(assignment.dueDate), "MMM d")}
+                          {format(new Date(assignment.due_date_c), "MMM d")}
                         </p>
                       </div>
                     </div>

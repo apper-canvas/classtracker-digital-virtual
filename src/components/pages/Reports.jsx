@@ -47,18 +47,18 @@ const Reports = () => {
     loadData();
   }, []);
 
-  const generateStudentReport = () => {
+const generateStudentReport = () => {
     return students.map(student => {
-      const studentGrades = grades.filter(g => g.studentId === student.Id);
-      const studentAttendance = attendance.filter(a => a.studentId === student.Id);
+      const studentGrades = grades.filter(g => g.student_id_c === student.Id);
+      const studentAttendance = attendance.filter(a => a.student_id_c === student.Id);
       
       const totalScore = studentGrades.reduce((sum, grade) => {
-        const assignment = assignments.find(a => a.Id === grade.assignmentId);
-        return sum + (grade.score / assignment.totalPoints) * 100;
+        const assignment = assignments.find(a => a.Id === grade.assignment_id_c);
+        return sum + (grade.score_c / assignment.total_points_c) * 100;
       }, 0);
       
       const average = studentGrades.length > 0 ? totalScore / studentGrades.length : 0;
-      const presentCount = studentAttendance.filter(a => a.status === "Present").length;
+      const presentCount = studentAttendance.filter(a => a.status_c === "Present").length;
       const attendanceRate = studentAttendance.length > 0 ? (presentCount / studentAttendance.length) * 100 : 0;
       
       return {
@@ -86,12 +86,12 @@ const Reports = () => {
     return distribution;
   };
 
-  const generateAssignmentStats = () => {
+const generateAssignmentStats = () => {
     return assignments.map(assignment => {
-      const assignmentGrades = grades.filter(g => g.assignmentId === assignment.Id);
-      const totalScore = assignmentGrades.reduce((sum, g) => sum + g.score, 0);
+      const assignmentGrades = grades.filter(g => g.assignment_id_c === assignment.Id);
+      const totalScore = assignmentGrades.reduce((sum, g) => sum + g.score_c, 0);
       const average = assignmentGrades.length > 0 ? totalScore / assignmentGrades.length : 0;
-      const percentage = (average / assignment.totalPoints) * 100;
+      const percentage = (average / assignment.total_points_c) * 100;
       
       return {
         assignment,
@@ -186,8 +186,8 @@ const Reports = () => {
               <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-info-100 to-info-200 rounded-lg mb-3">
                 <ApperIcon name="Calendar" className="h-6 w-6 text-info-600" />
               </div>
-              <p className="text-2xl font-bold text-gray-900">
-                {Math.round((attendance.filter(a => a.status === "Present").length / attendance.length) * 100) || 0}%
+<p className="text-2xl font-bold text-gray-900">
+                {Math.round((attendance.filter(a => a.status_c === "Present").length / attendance.length) * 100) || 0}%
               </p>
               <p className="text-sm text-gray-600">Attendance Rate</p>
             </Card>
@@ -215,17 +215,17 @@ const Reports = () => {
                 {studentReports.map(report => (
                   <tr key={report.student.Id} className="hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="flex items-center">
+<div className="flex items-center">
                         <img
-                          src={report.student.photo}
-                          alt={`${report.student.firstName} ${report.student.lastName}`}
+                          src={report.student.photo_c}
+                          alt={`${report.student.first_name_c} ${report.student.last_name_c}`}
                           className="h-10 w-10 rounded-full object-cover"
                         />
                         <div className="ml-4">
                           <div className="text-sm font-medium text-gray-900">
-                            {report.student.firstName} {report.student.lastName}
+                            {report.student.first_name_c} {report.student.last_name_c}
                           </div>
-                          <div className="text-sm text-gray-500">{report.student.email}</div>
+                          <div className="text-sm text-gray-500">{report.student.email_c}</div>
                         </div>
                       </div>
                     </td>
@@ -274,17 +274,17 @@ const Reports = () => {
               <tbody className="bg-white divide-y divide-gray-200">
                 {assignmentStats.map(stat => (
                   <tr key={stat.assignment.Id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap">
+<td className="px-6 py-4 whitespace-nowrap">
                       <div>
-                        <div className="text-sm font-medium text-gray-900">{stat.assignment.title}</div>
-                        <div className="text-sm text-gray-500">{stat.assignment.category} • {stat.assignment.totalPoints} pts</div>
+                        <div className="text-sm font-medium text-gray-900">{stat.assignment.title_c}</div>
+                        <div className="text-sm text-gray-500">{stat.assignment.category_c} • {stat.assignment.total_points_c} pts</div>
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-900">
                       {stat.studentsGraded}/{students.length}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-900">
-                      {stat.average}/{stat.assignment.totalPoints}
+<td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-900">
+                      {stat.average}/{stat.assignment.total_points_c}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-center">
                       <Badge variant={
@@ -295,8 +295,8 @@ const Reports = () => {
                         {stat.percentage}%
                       </Badge>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
-                      {format(new Date(stat.assignment.dueDate), "MMM d, yyyy")}
+<td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
+                      {format(new Date(stat.assignment.due_date_c), "MMM d, yyyy")}
                     </td>
                   </tr>
                 ))}

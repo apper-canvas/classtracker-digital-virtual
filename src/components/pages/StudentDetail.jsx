@@ -61,11 +61,11 @@ const StudentDetail = () => {
     return <Error title="Student not found" message="The student you're looking for doesn't exist." />;
   }
 
-  const calculateGPA = () => {
+const calculateGPA = () => {
     if (!grades.length) return 0;
     const total = grades.reduce((sum, grade) => {
-      const assignment = assignments.find(a => a.Id === grade.assignmentId);
-      return sum + (grade.score / assignment.totalPoints) * 100;
+      const assignment = assignments.find(a => a.Id === grade.assignment_id_c);
+      return sum + (grade.score_c / assignment.total_points_c) * 100;
     }, 0);
     return ((total / grades.length) / 100 * 4);
   };
@@ -75,8 +75,7 @@ const StudentDetail = () => {
     const present = attendance.filter(record => record.status === "Present").length;
     return (present / attendance.length) * 100;
   };
-
-  const getGradeStatus = (score, totalPoints) => {
+const getGradeStatus = (score, totalPoints) => {
     const percentage = (score / totalPoints) * 100;
     if (percentage >= 90) return "success";
     if (percentage >= 80) return "primary";
@@ -100,29 +99,29 @@ const StudentDetail = () => {
       {/* Student Profile */}
       <Card variant="elevated" className="p-6">
         <div className="flex items-start space-x-6">
-          <img
-            src={student.photo}
-            alt={`${student.firstName} ${student.lastName}`}
+<img
+            src={student.photo_c}
+            alt={`${student.first_name_c} ${student.last_name_c}`}
             className="h-24 w-24 rounded-xl object-cover border-2 border-gray-200"
           />
           <div className="flex-1">
             <h1 className="text-3xl font-bold text-gray-900">
-              {student.firstName} {student.lastName}
+              {student.first_name_c} {student.last_name_c}
             </h1>
-            <p className="text-gray-600 mt-1">{student.email}</p>
+            <p className="text-gray-600 mt-1">{student.email_c}</p>
             
             <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <p className="text-sm font-medium text-gray-600">Date of Birth</p>
-                <p className="text-gray-900">{format(new Date(student.dateOfBirth), "MMM d, yyyy")}</p>
+                <p className="text-gray-900">{format(new Date(student.date_of_birth_c), "MMM d, yyyy")}</p>
               </div>
               <div>
                 <p className="text-sm font-medium text-gray-600">Enrollment Date</p>
-                <p className="text-gray-900">{format(new Date(student.enrollmentDate), "MMM d, yyyy")}</p>
+                <p className="text-gray-900">{format(new Date(student.enrollment_date_c), "MMM d, yyyy")}</p>
               </div>
               <div>
                 <p className="text-sm font-medium text-gray-600">Parent Contact</p>
-                <p className="text-gray-900">{student.parentContact}</p>
+                <p className="text-gray-900">{student.parent_contact_c}</p>
               </div>
             </div>
           </div>
@@ -165,23 +164,23 @@ const StudentDetail = () => {
               .sort((a, b) => new Date(b.submittedDate) - new Date(a.submittedDate))
               .slice(0, 5)
               .map(grade => {
-                const assignment = assignments.find(a => a.Id === grade.assignmentId);
-                const percentage = Math.round((grade.score / assignment.totalPoints) * 100);
+const assignment = assignments.find(a => a.Id === grade.assignment_id_c);
+                const percentage = Math.round((grade.score_c / assignment.total_points_c) * 100);
                 
                 return (
                   <div key={grade.Id} className="flex items-center justify-between py-3 border-b border-gray-100 last:border-b-0">
                     <div>
-                      <p className="font-medium text-gray-900">{assignment.title}</p>
+                      <p className="font-medium text-gray-900">{assignment.title_c}</p>
                       <p className="text-sm text-gray-500">
-                        Submitted: {format(new Date(grade.submittedDate), "MMM d, yyyy")}
+                        Submitted: {format(new Date(grade.submitted_date_c), "MMM d, yyyy")}
                       </p>
-                      {grade.notes && (
-                        <p className="text-sm text-gray-600 mt-1">{grade.notes}</p>
+                      {grade.notes_c && (
+                        <p className="text-sm text-gray-600 mt-1">{grade.notes_c}</p>
                       )}
                     </div>
                     <div className="flex items-center space-x-3">
-                      <Badge variant={getGradeStatus(grade.score, assignment.totalPoints)}>
-                        {grade.score}/{assignment.totalPoints} ({percentage}%)
+                      <Badge variant={getGradeStatus(grade.score_c, assignment.total_points_c)}>
+                        {grade.score_c}/{assignment.total_points_c} ({percentage}%)
                       </Badge>
                     </div>
                   </div>
@@ -199,11 +198,11 @@ const StudentDetail = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <p className="text-sm font-medium text-gray-600 mb-1">Address</p>
-            <p className="text-gray-900">{student.address}</p>
+<p className="text-gray-900">{student.address_c}</p>
           </div>
           <div>
             <p className="text-sm font-medium text-gray-600 mb-1">Emergency Contact</p>
-            <p className="text-gray-900">{student.emergencyContact}</p>
+            <p className="text-gray-900">{student.emergency_contact_c}</p>
           </div>
         </div>
       </Card>

@@ -9,16 +9,16 @@ import { format } from "date-fns";
 const StudentCard = ({ student, grades = [], attendance = [] }) => {
   const navigate = useNavigate();
 
-  const calculateGPA = () => {
+const calculateGPA = () => {
     if (!grades.length) return "N/A";
-    const total = grades.reduce((sum, grade) => sum + (grade.score || 0), 0);
+    const total = grades.reduce((sum, grade) => sum + (grade.score_c || 0), 0);
     const percentage = total / grades.length;
     return (percentage / 100 * 4).toFixed(2);
   };
 
-  const getAttendanceRate = () => {
+const getAttendanceRate = () => {
     if (!attendance.length) return "N/A";
-    const present = attendance.filter(record => record.status === "Present").length;
+    const present = attendance.filter(record => record.status_c === "Present").length;
     return `${Math.round((present / attendance.length) * 100)}%`;
   };
 
@@ -30,9 +30,9 @@ const StudentCard = ({ student, grades = [], attendance = [] }) => {
     <Card variant="interactive" className="p-6">
       <div className="flex items-start space-x-4">
         <div className="flex-shrink-0">
-          <img
-            src={student.photo}
-            alt={`${student.firstName} ${student.lastName}`}
+<img
+            src={student.photo_c}
+            alt={`${student.first_name_c} ${student.last_name_c}`}
             className="h-16 w-16 rounded-lg object-cover border-2 border-gray-200"
           />
         </div>
@@ -40,11 +40,11 @@ const StudentCard = ({ student, grades = [], attendance = [] }) => {
           <div className="flex items-start justify-between">
             <div>
               <h3 className="text-lg font-semibold text-gray-900 truncate">
-                {student.firstName} {student.lastName}
+                {student.first_name_c} {student.last_name_c}
               </h3>
-              <p className="text-sm text-gray-500 truncate">{student.email}</p>
+              <p className="text-sm text-gray-500 truncate">{student.email_c}</p>
               <p className="text-xs text-gray-400 mt-1">
-                Enrolled: {format(new Date(student.enrollmentDate), "MMM d, yyyy")}
+                Enrolled: {format(new Date(student.enrollment_date_c), "MMM d, yyyy")}
               </p>
             </div>
             <Button
@@ -79,9 +79,9 @@ const StudentCard = ({ student, grades = [], attendance = [] }) => {
                 <span className="text-xs text-gray-900 font-medium">{grades.length}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-xs font-medium text-gray-600">Days Present</span>
+<span className="text-xs font-medium text-gray-600">Days Present</span>
                 <span className="text-xs text-gray-900 font-medium">
-                  {attendance.filter(record => record.status === "Present").length}
+                  {attendance.filter(record => record.status_c === "Present").length}
                 </span>
               </div>
             </div>

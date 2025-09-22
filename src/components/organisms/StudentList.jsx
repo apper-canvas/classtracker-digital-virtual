@@ -44,11 +44,11 @@ const StudentList = () => {
   }, []);
 
   useEffect(() => {
-    if (searchQuery.trim()) {
+if (searchQuery.trim()) {
       const filtered = students.filter(student =>
-        student.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        student.lastName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        student.email.toLowerCase().includes(searchQuery.toLowerCase())
+        student.first_name_c.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        student.last_name_c.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        student.email_c.toLowerCase().includes(searchQuery.toLowerCase())
       );
       setFilteredStudents(filtered);
     } else {
@@ -56,12 +56,12 @@ const StudentList = () => {
     }
   }, [searchQuery, students]);
 
-  const getStudentGrades = (studentId) => {
-    return grades.filter(grade => grade.studentId === studentId);
+const getStudentGrades = (studentId) => {
+    return grades.filter(grade => grade.student_id_c === studentId);
   };
 
-  const getStudentAttendance = (studentId) => {
-    return attendance.filter(record => record.studentId === studentId);
+const getStudentAttendance = (studentId) => {
+    return attendance.filter(record => record.student_id_c === studentId);
   };
 
   if (loading) {

@@ -12,15 +12,15 @@ const AttendanceCalendar = ({
   const monthEnd = endOfMonth(currentDate);
   const days = eachDayOfInterval({ start: monthStart, end: monthEnd });
 
-  const getAttendanceForDate = (date) => {
+const getAttendanceForDate = (date) => {
     const dateStr = format(date, "yyyy-MM-dd");
-    return attendanceData.filter(record => record.date === dateStr);
+    return attendanceData.filter(record => record.date_c === dateStr);
   };
 
-  const getStatusSummary = (attendance) => {
-    const present = attendance.filter(a => a.status === "Present").length;
-    const absent = attendance.filter(a => a.status === "Absent").length;
-    const late = attendance.filter(a => a.status === "Late").length;
+const getStatusSummary = (attendance) => {
+    const present = attendance.filter(a => a.status_c === "Present").length;
+    const absent = attendance.filter(a => a.status_c === "Absent").length;
+    const late = attendance.filter(a => a.status_c === "Late").length;
     
     return { present, absent, late, total: attendance.length };
   };

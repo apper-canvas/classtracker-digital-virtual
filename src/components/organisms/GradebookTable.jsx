@@ -48,9 +48,9 @@ const GradebookTable = () => {
     loadData();
   }, []);
 
-  const getGradeForStudentAssignment = (studentId, assignmentId) => {
+const getGradeForStudentAssignment = (studentId, assignmentId) => {
     return grades.find(grade => 
-      grade.studentId === studentId && grade.assignmentId === assignmentId
+      grade.student_id_c === studentId && grade.assignment_id_c === assignmentId
     );
   };
 
@@ -149,11 +149,11 @@ const GradebookTable = () => {
                 <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider sticky left-0 bg-gray-50 z-10">
                   Student
                 </th>
-                {assignments.map(assignment => (
+{assignments.map(assignment => (
                   <th key={assignment.Id} className="px-4 py-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider min-w-[120px]">
                     <div>
-                      <div className="font-semibold">{assignment.title}</div>
-                      <div className="text-xs text-gray-400">{assignment.totalPoints} pts</div>
+                      <div className="font-semibold">{assignment.title_c}</div>
+                      <div className="text-xs text-gray-400">{assignment.total_points_c} pts</div>
                     </div>
                   </th>
                 ))}
@@ -163,11 +163,11 @@ const GradebookTable = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {students.map((student, index) => {
-                const studentGrades = grades.filter(g => g.studentId === student.Id);
+{students.map((student, index) => {
+                const studentGrades = grades.filter(g => g.student_id_c === student.Id);
                 const totalScore = studentGrades.reduce((sum, g) => {
-                  const assignment = assignments.find(a => a.Id === g.assignmentId);
-                  return sum + (g.score / assignment.totalPoints) * 100;
+                  const assignment = assignments.find(a => a.Id === g.assignment_id_c);
+                  return sum + (g.score_c / assignment.total_points_c) * 100;
                 }, 0);
                 const average = studentGrades.length > 0 ? totalScore / studentGrades.length : 0;
                 
@@ -181,22 +181,22 @@ const GradebookTable = () => {
                   >
                     <td className="px-6 py-4 whitespace-nowrap sticky left-0 bg-white z-10 border-r border-gray-200">
                       <div className="flex items-center">
-                        <img
-                          src={student.photo}
-                          alt={`${student.firstName} ${student.lastName}`}
+<img
+                          src={student.photo_c}
+                          alt={`${student.first_name_c} ${student.last_name_c}`}
                           className="h-8 w-8 rounded-full object-cover"
                         />
                         <div className="ml-3">
                           <div className="text-sm font-medium text-gray-900">
-                            {student.firstName} {student.lastName}
+                            {student.first_name_c} {student.last_name_c}
                           </div>
                         </div>
                       </div>
                     </td>
                     
                     {assignments.map(assignment => {
-                      const grade = getGradeForStudentAssignment(student.Id, assignment.Id);
-                      const percentage = grade ? calculatePercentage(grade.score, assignment.totalPoints) : null;
+const grade = getGradeForStudentAssignment(student.Id, assignment.Id);
+                      const percentage = grade ? calculatePercentage(grade.score_c, assignment.total_points_c) : null;
                       
                       return (
                         <td key={assignment.Id} className="px-4 py-4 text-center">
@@ -207,7 +207,7 @@ const GradebookTable = () => {
                                 className="cursor-pointer"
                                 onClick={() => handleEditGrade(grade)}
                               >
-                                {grade.score}/{assignment.totalPoints}
+                                {grade.score_c}/{assignment.total_points_c}
                               </Badge>
                               <div className="text-xs text-gray-500">{percentage}%</div>
                             </div>
@@ -216,9 +216,9 @@ const GradebookTable = () => {
                               size="sm"
                               variant="ghost"
                               onClick={() => {
-                                setEditingGrade({
-                                  studentId: student.Id,
-                                  assignmentId: assignment.Id
+setEditingGrade({
+                                  student_id_c: student.Id,
+                                  assignment_id_c: assignment.Id
                                 });
                                 setShowGradeForm(true);
                               }}

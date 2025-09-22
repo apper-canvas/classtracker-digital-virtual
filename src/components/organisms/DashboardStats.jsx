@@ -26,25 +26,25 @@ const DashboardStats = () => {
         attendanceService.getAll()
       ]);
 
-      // Calculate class average
+// Calculate class average
       const totalScores = grades.reduce((sum, grade) => {
-        const assignment = assignments.find(a => a.Id === grade.assignmentId);
-        return sum + (grade.score / assignment.totalPoints) * 100;
+        const assignment = assignments.find(a => a.Id === grade.assignment_id_c);
+        return sum + (grade.score_c / assignment.total_points_c) * 100;
       }, 0);
       const classAverage = grades.length > 0 ? totalScores / grades.length : 0;
 
       // Calculate attendance rate
-      const totalAttendance = attendance.length;
-      const presentCount = attendance.filter(record => record.status === "Present").length;
+const totalAttendance = attendance.length;
+      const presentCount = attendance.filter(record => record.status_c === "Present").length;
       const attendanceRate = totalAttendance > 0 ? (presentCount / totalAttendance) * 100 : 0;
 
       // Recent activity
-      const recentGrades = grades
-        .sort((a, b) => new Date(b.submittedDate) - new Date(a.submittedDate))
+const recentGrades = grades
+        .sort((a, b) => new Date(b.submitted_date_c) - new Date(a.submitted_date_c))
         .slice(0, 5)
         .map(grade => {
-          const student = students.find(s => s.Id === grade.studentId);
-          const assignment = assignments.find(a => a.Id === grade.assignmentId);
+          const student = students.find(s => s.Id === grade.student_id_c);
+          const assignment = assignments.find(a => a.Id === grade.assignment_id_c);
           return { ...grade, student, assignment };
         });
 
@@ -146,24 +146,24 @@ const DashboardStats = () => {
                 className="flex items-center justify-between py-3 border-b border-gray-100 last:border-b-0"
               >
                 <div className="flex items-center space-x-3">
-                  <img
-                    src={grade.student?.photo}
-                    alt={`${grade.student?.firstName} ${grade.student?.lastName}`}
+<img
+                    src={grade.student?.photo_c}
+                    alt={`${grade.student?.first_name_c} ${grade.student?.last_name_c}`}
                     className="h-10 w-10 rounded-full object-cover"
                   />
                   <div>
                     <p className="text-sm font-medium text-gray-900">
-                      {grade.student?.firstName} {grade.student?.lastName}
+                      {grade.student?.first_name_c} {grade.student?.last_name_c}
                     </p>
-                    <p className="text-xs text-gray-500">{grade.assignment?.title}</p>
+                    <p className="text-xs text-gray-500">{grade.assignment?.title_c}</p>
                   </div>
                 </div>
                 <div className="text-right">
                   <p className="text-sm font-semibold text-gray-900">
-                    {grade.score}/{grade.assignment?.totalPoints}
+                    {grade.score_c}/{grade.assignment?.total_points_c}
                   </p>
                   <p className="text-xs text-gray-500">
-                    {Math.round((grade.score / grade.assignment?.totalPoints) * 100)}%
+                    {Math.round((grade.score_c / grade.assignment?.total_points_c) * 100)}%
                   </p>
                 </div>
               </motion.div>

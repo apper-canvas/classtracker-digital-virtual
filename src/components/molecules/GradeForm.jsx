@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import Textarea from "@/components/atoms/Textarea";
 import Input from "@/components/atoms/Input";
 import Select from "@/components/atoms/Select";
-import Textarea from "@/components/atoms/Textarea";
 import Button from "@/components/atoms/Button";
-import { toast } from "react-toastify";
 
 const GradeForm = ({ 
   onSubmit, 
@@ -12,21 +12,21 @@ const GradeForm = ({
   students = [],
   assignments = []
 }) => {
-  const [formData, setFormData] = useState({
-    studentId: "",
-    assignmentId: "",
-    score: "",
-    notes: ""
+const [formData, setFormData] = useState({
+    student_id_c: "",
+    assignment_id_c: "",
+    score_c: "",
+    notes_c: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    if (initialData) {
+if (initialData) {
       setFormData({
-        studentId: initialData.studentId || "",
-        assignmentId: initialData.assignmentId || "",
-        score: initialData.score || "",
-        notes: initialData.notes || ""
+        student_id_c: initialData.student_id_c || "",
+        assignment_id_c: initialData.assignment_id_c || "",
+        score_c: initialData.score_c || "",
+        notes_c: initialData.notes_c || ""
       });
     }
   }, [initialData]);
@@ -41,34 +41,34 @@ const GradeForm = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!formData.studentId || !formData.assignmentId || !formData.score) {
+if (!formData.student_id_c || !formData.assignment_id_c || !formData.score_c) {
       toast.error("Please fill in all required fields");
       return;
     }
 
-    const selectedAssignment = assignments.find(a => a.Id === parseInt(formData.assignmentId));
-    const score = parseFloat(formData.score);
+const selectedAssignment = assignments.find(a => a.Id === parseInt(formData.assignment_id_c));
+    const score = parseFloat(formData.score_c);
     
-    if (isNaN(score) || score < 0 || score > (selectedAssignment?.totalPoints || 100)) {
-      toast.error(`Score must be between 0 and ${selectedAssignment?.totalPoints || 100} points`);
+    if (isNaN(score) || score < 0 || score > (selectedAssignment?.total_points_c || 100)) {
+      toast.error(`Score must be between 0 and ${selectedAssignment?.total_points_c || 100} points`);
       return;
     }
 
     setIsSubmitting(true);
     try {
-      await onSubmit({
+await onSubmit({
         ...formData,
-        studentId: parseInt(formData.studentId),
-        assignmentId: parseInt(formData.assignmentId),
-        score: score
+        student_id_c: parseInt(formData.student_id_c),
+        assignment_id_c: parseInt(formData.assignment_id_c),
+        score_c: score
       });
       
       if (!initialData) {
-        setFormData({
-          studentId: "",
-          assignmentId: "",
-          score: "",
-          notes: ""
+setFormData({
+          student_id_c: "",
+          assignment_id_c: "",
+          score_c: "",
+          notes_c: ""
         });
       }
     } catch (error) {
@@ -78,56 +78,53 @@ const GradeForm = ({
     }
   };
 
-  const selectedAssignment = assignments.find(a => a.Id === parseInt(formData.assignmentId));
+const selectedAssignment = assignments.find(a => a.Id === parseInt(formData.assignment_id_c));
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Select
-          label="Student"
-          value={formData.studentId}
-          onChange={(e) => handleChange("studentId", e.target.value)}
+value={formData.student_id_c}
+          onChange={(e) => handleChange("student_id_c", e.target.value)}
           required
         >
           <option value="">Select a student</option>
           {students.map(student => (
             <option key={student.Id} value={student.Id}>
-              {student.firstName} {student.lastName}
+              {student.first_name_c} {student.last_name_c}
             </option>
           ))}
         </Select>
 
         <Select
-          label="Assignment"
-          value={formData.assignmentId}
-          onChange={(e) => handleChange("assignmentId", e.target.value)}
+value={formData.assignment_id_c}
+          onChange={(e) => handleChange("assignment_id_c", e.target.value)}
           required
         >
           <option value="">Select an assignment</option>
           {assignments.map(assignment => (
             <option key={assignment.Id} value={assignment.Id}>
-              {assignment.title} ({assignment.totalPoints} pts)
+              {assignment.title_c} ({assignment.total_points_c} pts)
             </option>
           ))}
-        </Select>
+</Select>
       </div>
 
       <Input
-        type="number"
-        label={`Score ${selectedAssignment ? `(out of ${selectedAssignment.totalPoints} points)` : ""}`}
-        value={formData.score}
-        onChange={(e) => handleChange("score", e.target.value)}
+        label={`Score ${selectedAssignment ? `(out of ${selectedAssignment.total_points_c} points)` : ""}`}
+        value={formData.score_c}
+        onChange={(e) => handleChange("score_c", e.target.value)}
         min="0"
-        max={selectedAssignment?.totalPoints || "100"}
+        max={selectedAssignment?.total_points_c || "100"}
         step="0.1"
         required
       />
 
       <Textarea
         label="Notes"
-        placeholder="Optional notes about the grade..."
-        value={formData.notes}
-        onChange={(e) => handleChange("notes", e.target.value)}
+placeholder="Optional notes about the grade..."
+        value={formData.notes_c}
+        onChange={(e) => handleChange("notes_c", e.target.value)}
         rows={3}
       />
 

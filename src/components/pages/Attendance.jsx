@@ -52,16 +52,16 @@ const Attendance = () => {
     setSelectedDate(date);
   };
 
-  const getAttendanceForDate = (date) => {
+const getAttendanceForDate = (date) => {
     const dateStr = format(date, "yyyy-MM-dd");
-    return attendanceData.filter(record => record.date === dateStr);
+    return attendanceData.filter(record => record.date_c === dateStr);
   };
 
   const getAttendanceStats = () => {
-    const total = attendanceData.length;
-    const present = attendanceData.filter(record => record.status === "Present").length;
-    const absent = attendanceData.filter(record => record.status === "Absent").length;
-    const late = attendanceData.filter(record => record.status === "Late").length;
+const total = attendanceData.length;
+    const present = attendanceData.filter(record => record.status_c === "Present").length;
+    const absent = attendanceData.filter(record => record.status_c === "Absent").length;
+    const late = attendanceData.filter(record => record.status_c === "Late").length;
     
     return {
       total,
@@ -151,27 +151,27 @@ const Attendance = () => {
             {selectedDate ? (
               <div className="space-y-4">
                 {selectedDateAttendance.length > 0 ? (
-                  selectedDateAttendance.map(record => {
-                    const student = students.find(s => s.Id === record.studentId);
+selectedDateAttendance.map(record => {
+                    const student = students.find(s => s.Id === record.student_id_c);
                     return (
                       <div key={record.Id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                         <div className="flex items-center space-x-3">
                           <img
-                            src={student?.photo}
-                            alt={`${student?.firstName} ${student?.lastName}`}
+                            src={student?.photo_c}
+                            alt={`${student?.first_name_c} ${student?.last_name_c}`}
                             className="h-8 w-8 rounded-full object-cover"
                           />
                           <span className="text-sm font-medium text-gray-900">
-                            {student?.firstName} {student?.lastName}
+                            {student?.first_name_c} {student?.last_name_c}
                           </span>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                            record.status === "Present" ? "bg-success-100 text-success-800" :
-                            record.status === "Absent" ? "bg-error-100 text-error-800" :
+<span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                            record.status_c === "Present" ? "bg-success-100 text-success-800" :
+                            record.status_c === "Absent" ? "bg-error-100 text-error-800" :
                             "bg-warning-100 text-warning-800"
                           }`}>
-                            {record.status}
+                            {record.status_c}
                           </span>
                         </div>
                       </div>
