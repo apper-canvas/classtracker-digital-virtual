@@ -1,0 +1,122 @@
+[
+  {
+    "Id": 1,
+    "firstName": "Emma",
+    "lastName": "Johnson",
+    "email": "emma.johnson@school.edu",
+    "dateOfBirth": "2008-03-15",
+    "enrollmentDate": "2023-08-15",
+    "photo": "https://images.unsplash.com/photo-1494790108755-2616c36c1db0?w=150&h=150&fit=crop&crop=face",
+    "parentContact": "555-0101",
+    "address": "123 Oak Street, Springfield, IL 62701",
+    "emergencyContact": "Jane Johnson - 555-0102"
+  },
+  {
+    "Id": 2,
+    "firstName": "Liam",
+    "lastName": "Smith",
+    "email": "liam.smith@school.edu",
+    "dateOfBirth": "2008-07-22",
+    "enrollmentDate": "2023-08-15",
+    "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+    "parentContact": "555-0103",
+    "address": "456 Pine Avenue, Springfield, IL 62702",
+    "emergencyContact": "Michael Smith - 555-0104"
+  },
+  {
+    "Id": 3,
+    "firstName": "Olivia",
+    "lastName": "Brown",
+    "email": "olivia.brown@school.edu",
+    "dateOfBirth": "2008-11-08",
+    "enrollmentDate": "2023-08-15",
+    "photo": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+    "parentContact": "555-0105",
+    "address": "789 Elm Drive, Springfield, IL 62703",
+    "emergencyContact": "Sarah Brown - 555-0106"
+  },
+  {
+    "Id": 4,
+    "firstName": "Noah",
+    "lastName": "Davis",
+    "email": "noah.davis@school.edu",
+    "dateOfBirth": "2008-01-30",
+    "enrollmentDate": "2023-08-15",
+    "photo": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+    "parentContact": "555-0107",
+    "address": "321 Maple Street, Springfield, IL 62704",
+    "emergencyContact": "Robert Davis - 555-0108"
+  },
+  {
+    "Id": 5,
+    "firstName": "Sophia",
+    "lastName": "Wilson",
+    "email": "sophia.wilson@school.edu",
+    "dateOfBirth": "2008-05-17",
+    "enrollmentDate": "2023-08-15",
+    "photo": "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?w=150&h=150&fit=crop&crop=face",
+    "parentContact": "555-0109",
+    "address": "654 Cedar Lane, Springfield, IL 62705",
+    "emergencyContact": "Lisa Wilson - 555-0110"
+  },
+  {
+    "Id": 6,
+    "firstName": "Mason",
+    "lastName": "Garcia",
+    "email": "mason.garcia@school.edu",
+    "dateOfBirth": "2008-09-12",
+    "enrollmentDate": "2023-08-15",
+    "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
+    "parentContact": "555-0111",
+    "address": "987 Birch Road, Springfield, IL 62706",
+    "emergencyContact": "Carlos Garcia - 555-0112"
+  },
+  {
+    "Id": 7,
+    "firstName": "Ava",
+    "lastName": "Miller",
+    "email": "ava.miller@school.edu",
+    "dateOfBirth": "2008-12-03",
+    "enrollmentDate": "2023-08-15",
+    "photo": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
+    "parentContact": "555-0113",
+    "address": "147 Spruce Avenue, Springfield, IL 62707",
+    "emergencyContact": "Jennifer Miller - 555-0114"
+  },
+  {
+    "Id": 8,
+    "firstName": "Lucas",
+    "lastName": "Anderson",
+    "email": "lucas.anderson@school.edu",
+    "dateOfBirth": "2008-04-26",
+    "enrollmentDate": "2023-08-15",
+    "photo": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=face",
+    "parentContact": "555-0115",
+    "address": "258 Willow Street, Springfield, IL 62708",
+    "emergencyContact": "David Anderson - 555-0116"
+  },
+  {
+    "Id": 9,
+    "firstName": "Isabella",
+    "lastName": "Taylor",
+    "email": "isabella.taylor@school.edu",
+    "dateOfBirth": "2008-08-14",
+    "enrollmentDate": "2023-08-15",
+    "photo": "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face",
+    "parentContact": "555-0117",
+    "address": "369 Poplar Drive, Springfield, IL 62709",
+    "emergencyContact": "Michelle Taylor - 555-0118"
+  },
+  {
+    "Id": 10,
+    "firstName": "Ethan",
+    "lastName": "Martinez",
+    "email": "ethan.martinez@school.edu",
+    "dateOfBirth": "2008-06-09",
+    "enrollmentDate": "2023-08-15",
+    "photo": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face",
+    "parentContact": "555-0119",
+    "address": "741 Aspen Lane, Springfield, IL 62710",
+    "emergencyContact": "Maria Martinez - 555-0120"
+  }
+]
